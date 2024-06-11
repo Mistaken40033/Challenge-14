@@ -1,22 +1,14 @@
-const sequelize = require('../config/config.js');
-const { Sequelize, DataTypes } = require('sequelize');
+const User = require('./User');
+const Post = require('./Post');
 
-const db = {};
-
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
-
-// Define models here
-db.User = require('./User')(sequelize, DataTypes);
-db.Post = require('./Post')(sequelize, DataTypes);
-
-// Define associations here
-db.User.hasMany(db.Post, {
-  foreignKey: 'userId',
-  onDelete: 'CASCADE'
-});
-db.Post.belongsTo(db.User, {
-  foreignKey: 'userId'
+// Associations
+User.hasMany(Post, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE',
 });
 
-module.exports = db;
+Post.belongsTo(User, {
+  foreignKey: 'user_id',
+});
+
+module.exports = { User, Post };

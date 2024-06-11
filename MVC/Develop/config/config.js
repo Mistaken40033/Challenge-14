@@ -10,7 +10,7 @@ if (process.env.DB_URL) {
     dialectOptions: {
       ssl: {
         require: true,
-        rejectUnauthorized: false // For compatibility with some cloud providers
+        rejectUnauthorized: false
       }
     }
   });

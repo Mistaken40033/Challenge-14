@@ -1,8 +1,31 @@
-<h1>Blog Posts</h1>
+{{#if logged_in}}
+  <h2>Welcome, {{username}}!</h2>
+  <button id="logout">Logout</button>
+{{else}}
+  <a href="/login">Login</a>
+  <a href="/signup">Sign Up</a>
+{{/if}}
+
+<h1>All Posts</h1>
 {{#each posts}}
-  <div>
+  <div class="post">
     <h2>{{this.title}}</h2>
     <p>{{this.content}}</p>
-    <small>by {{this.User.username}}</small>
+    <p>By {{this.user.username}}</p>
   </div>
 {{/each}}
+
+<script>
+  document.getElementById('logout').addEventListener('click', async () => {
+    const response = await fetch('/api/users/logout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    if (response.ok) {
+      document.location.replace('/');
+    } else {
+      alert('Failed to log out');
+    }
+  });
+</script>

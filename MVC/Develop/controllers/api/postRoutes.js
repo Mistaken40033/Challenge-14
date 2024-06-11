@@ -1,25 +1,33 @@
 const router = require('express').Router();
-const { Post } = require('../../models');
+const { Post, User } = require('../../models');
 
-// Create a new post
+// Create new post
 router.post('/', async (req, res) => {
   try {
     const newPost = await Post.create({
-      title: req.body.title,
-      content: req.body.content,
-      userId: req.session.userId
+      ...req.body,
+      user_id: req.session.user_id,
     });
-    res.status(201).json(newPost);
+    res.status(200).json(newPost);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(400).json(err);
   }
 });
 
 // Get all posts
 router.get('/', async (req, res) => {
   try {
-    const posts = await Post.findAll();
-    res.json(posts);
+    const postData = await Post.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+      ],
+    });
+
+    const posts = postData.map((post) => post.get({ plain: true }));
+    res.status(200).json(posts);
   } catch (err) {
     res.status(500).json(err);
   }
