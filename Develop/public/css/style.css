@@ -1,18 +1,30 @@
 header, .project:not(:last-child) {
   border-bottom: 1px solid #ccc;
+  font-family: Arial, sans-serif;
+  background-color: #362212; /* Dark background */
+  color: #127191; /* Light text color */
+  margin: 0;
+  padding: 0;
 }
 
+a {
+  color: #d5e8d4;
+  text-decoration: none;
+}
 .no-button {
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
-  color: #1b89bc;
+  color: #f3f3f3;
   text-decoration: none;
   font-size: 100%;
 }
 
 .no-button:hover {
-  color: #065b83;
+  color: #4a411c;
   text-decoration: underline;
+}
+body {
+  background-color: #a7c2af;
 }
