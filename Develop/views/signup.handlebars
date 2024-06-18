@@ -1,25 +1,52 @@
-<div class="row">
-  <div class="col-md-6">
-    <h2>Signup</h2>
-
-    <form class="form signup-form">
-      <div class="form-group">
-        <label for="name-signup">name:</label>
-        <input class="form-input" type="text" id="name-signup" />
-      </div>
-      <div class="form-group">
-        <label for="email-signup">email:</label>
-        <input class="form-input" type="text" id="email-signup" />
-      </div>
-      <div class="form-group">
-        <label for="password-signup">password:</label>
-        <input class="form-input" type="password" id="password-signup" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">signup</button>
-      </div>
-    </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup</title>
+  <link rel="stylesheet" href="/css/jass.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="flex-column justify-space-around">
+    {{!-- <header class="display-flex justify-space-between align-center p-2">
+      <h1>
+        <a href="/">Home</a>
+      </h1>
+      <nav>
+        <!-- Conditionally render login or logout links -->
+        {{#if logged_in}}
+        <a href="/Dashboard">Dashboard</a> |
+        <button class="no-button" id="logout">Logout</button>
+        {{else}}
+        <a href="/login">Login</a> |
+        <a href="/signup">Signup</a>
+        {{/if}}
+      </nav>
+    </header> --}}
+    <main class="container container-fluid mt-5">
+      <h2>Signup</h2>
+      <form class="form signup-form">
+        <div class="form-group">
+          <label for="name-signup">Name:</label>
+          <input class="form-input" type="text" id="name-signup" />
+        </div>
+        <div class="form-group">
+          <label for="email-signup">Email:</label>
+          <input class="form-input" type="text" id="email-signup" />
+        </div>
+        <div class="form-group">
+          <label for="password-signup">Password:</label>
+          <input class="form-input" type="password" id="password-signup" />
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit">Signup</button>
+        </div>
+      </form>
+    </main>
+    <footer>
+    </footer>
   </div>
-</div>
-
-<script src="./js/login.js"></script>
+  <script src="/js/signup.js"></script>
+</body>
+</html>
