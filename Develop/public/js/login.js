@@ -1,62 +1,52 @@
 const loginFormHandler = async (event) => {
   event.preventDefault();
+  console.log('Login form submitted');  // Debugging line
 
   // Collect values from the login form
   const email = document.querySelector('#email-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
 
-  if (email && password) {
-    try {
-      // Send a POST request to the API endpoint
-      const response = await fetch('/api/users/login', {
-        method: 'POST',
-        body: JSON.stringify({ email, password }),
-        headers: { 'Content-Type': 'application/json' },
-      });
+  console.log(`Email: ${email}, Password: ${password}`);  // Debugging line
 
-      if (response.ok) {
-        // If successful, redirect the browser to the profile page
-        document.location.replace('/profile');
-      } else {
-        const result = await response.json();
-        alert(result.message || 'Failed to log in. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('An error occurred. Please try again later.');
+  if (email && password) {
+    // Send a POST request to the API endpoint
+    const response = await fetch('/api/Dashboard', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+      // If successful, redirect the browser to the profile page
+      document.location.replace('/profile');
+    } else {
+      alert(response.statusText);
     }
-  } else {
-    alert('Please enter both email and password.');
   }
 };
 
 const signupFormHandler = async (event) => {
   event.preventDefault();
+  console.log('Signup form submitted');  // Debugging line
 
   const name = document.querySelector('#name-signup').value.trim();
   const email = document.querySelector('#email-signup').value.trim();
   const password = document.querySelector('#password-signup').value.trim();
 
-  if (name && email && password) {
-    try {
-      const response = await fetch('/api/users/signup', {
-        method: 'POST',
-        body: JSON.stringify({ name, email, password }),
-        headers: { 'Content-Type': 'application/json' },
-      });
+  console.log(`Name: ${name}, Email: ${email}, Password: ${password}`);  // Debugging line
 
-      if (response.ok) {
-        document.location.replace('/profile');
-      } else {
-        const result = await response.json();
-        alert(result.message || 'Failed to sign up. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('An error occurred. Please try again later.');
+  if (name && email && password) {
+    const response = await fetch('/api/user', {
+      method: 'POST',
+      body: JSON.stringify({ name, email, password }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+      document.location.replace('/profile');
+    } else {
+      alert(response.statusText);
     }
-  } else {
-    alert('Please fill in all fields.');
   }
 };
 
@@ -68,6 +58,7 @@ document
   .querySelector('.signup-form')
   .addEventListener('submit', signupFormHandler);
 
+
 // const loginFormHandler = async (event) => {
 //   event.preventDefault();
 
@@ -77,7 +68,7 @@ document
 
 //   if (email && password) {
 //     // Send a POST request to the API endpoint
-//     const response = await fetch('/api/users/login', {
+//     const response = await fetch('/api//login', {
 //       method: 'POST',
 //       body: JSON.stringify({ email, password }),
 //       headers: { 'Content-Type': 'application/json' },

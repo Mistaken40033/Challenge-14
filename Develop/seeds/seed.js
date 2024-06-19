@@ -7,7 +7,7 @@ const projectData = require('./projectData.json');
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
-  const users = await User.bulkCreate(userData, {
+  const user = await User.bulkCreate(userData, {
     individualHooks: true,
     returning: true,
   });
@@ -15,7 +15,7 @@ const seedDatabase = async () => {
   for (const project of projectData) {
     await Project.create({
       ...project,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
+      user_id: user[Math.floor(Math.random() * user.length)].id,
     });
   }
 
